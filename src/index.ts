@@ -1,12 +1,4 @@
-const name = 'nicolas',
-    age = 24,
-    gender = 'male'
-
-const sayHi = (name, age, gender?): void => {
-    console.log(gender) // undefined
-}
-
-// sayHi(name, age)
+import * as CryptoJS from 'crypto-js'
 
 class Block {
     public index: number
@@ -14,6 +6,14 @@ class Block {
     public previousHash: string
     public data: string
     public timestamp: number
+
+    static calculateBlockHash = (
+        index: number,
+        previousHash: string,
+        timestamp: number,
+        data: string
+    ): string =>
+        CryptoJS.SHA256(index + previousHash + timestamp + data).toString()
 
     constructor(
         index: number,
@@ -30,10 +30,17 @@ class Block {
     }
 }
 
+// Block.calculateBlockHash()
+
 const genesisBlock: Block = new Block(0, '213104204024', '', 'Hello', 12345)
 
-let blockchain: [Block] = [genesisBlock]
+let blockchain: Block[] = [genesisBlock]
+// console.log(blockchain)
 
-console.log(blockchain)
+const getBlockchain = (): Block[] => blockchain
+
+const getLatestBlock = (): Block => blockchain[blockchain.length - 1]
+
+const getNewTimeStamp = (): number => Math.round(new Date().getTime() / 1000)
 
 export {}
