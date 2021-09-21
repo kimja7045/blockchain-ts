@@ -1,0 +1,9 @@
+{
+  "name": "blockchain-ts",
+  "version": "1.0.0",
+  "description": "Learning Typescript by making a Blockchain with it",
+  "main": "index.js",
+  "repository": "https://github.com/kimja7045/blockchain-ts.git",
+  "author": "kimja01 <kimja7045@naver.com>",
+  "license": "MIT"
+}
